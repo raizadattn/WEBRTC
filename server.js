@@ -1,9 +1,16 @@
 const Socket = require('websocket').server
 const http = require('http')
+var express = require('express');
+var app = express();
+
+//setting middleware
+app.use(express.static(__dirname + '/public'));
+console.log(__dirname + '/public')
 
 const server = http.createServer((req,res)=>{
 })
-const port = process.env.PORT || 3000
+const port = 3000
+// const port = process.env.PORT || 3000
 server.listen(port, ()=>{
     console.log(`Listening on port ${port}`)
 })
