@@ -2,15 +2,31 @@ const Socket = require('websocket').server
 const http = require('http')
 var express = require('express');
 var app = express();
+const server = require('http').Server(app)
+app.set('view engine', 'ejs')
+
 
 //setting middleware
 app.use(express.static(__dirname + '/public'));
 console.log(__dirname + '/public')
 
-const server = http.createServer((req,res)=>{
-})
+// const server = http.createServer((req,res)=>{
+//     if (req.url === "/api" && req.method === "GET") {
+//         //response headers
+//         res.writeHead(200, { "Content-Type": "application/json" });
+//         //set the response
+//         res.write("Hi there, This is a Vanilla Node.js API");
+//         //end the response
+//         res.end();
+
+//     }
+// })
 const port = 3000
 // const port = process.env.PORT || 3000
+app.get('/',(req,res)=>{
+    res.render('room', { roomId: req.params.room })
+})
+app.get('/api',(req,res)=>res.json('hello'))
 server.listen(port, ()=>{
     console.log(`Listening on port ${port}`)
 })
