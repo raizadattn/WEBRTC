@@ -2,7 +2,10 @@ const Socket = require('websocket').server
 const http = require('http')
 var express = require('express');
 var app = express();
-const server = require('http').Server(app)
+// const server = require('http').Server(app)
+
+const server = http.createServer(app);
+
 app.set('view engine', 'ejs')
 
 
