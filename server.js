@@ -24,7 +24,15 @@ console.log(__dirname + '/public')
 // const port = 3000
 const port = process.env.PORT || 3000
 app.get('/',(req,res)=>{
+    res.render('sender', { roomId: req.params.room })
+})
+
+app.get('/room',(req,res)=>{
     res.render('room', { roomId: req.params.room })
+})
+app.get('/receiver',(req,res)=>{
+    console.log('receuver page')
+    res.render('receiver', { roomId: req.params.room })
 })
 app.get('/api',(req,res)=>res.json('hello'))
 server.listen(port, ()=>{
